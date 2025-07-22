@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personl Finance Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+  <div id="loader">
+  <div class="ring"></div>
+  <p>Loading Lavishness...</p>
+</div>
+
+  <div class="container">
+    <h1>Personal Finance Tracker</h1>
+    
+    <div id="summary">
+      <div class="card income"><div>Income: <span id="income">$0</span></div></div>
+      <div class="card expense"><div>Expense: <span id="expense">$0</span></div></div>
+      <div class="card balance"><div>Balance: <span id="balance">$0</span></div></div>
+
+    </div>
+
+    <form id="transaction-form">
+      <button id="voice-btn" title="Voice Input">🎙️</button>
+      <input type="text" id="desc" placeholder="Description required">
+      <input type="number"  id="amount" placeholder="Amount required">
+      <select id="type">
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+      </select>
+      <button type="submit">Add</button>
+    </form>
+
+    <div id="filter-container">
+  <label for="monthFilter">📅 Filter by month:</label>
+  <select id="monthFilter">
+    <option value="all">All</option>
+    <!-- Options will be injected by JS -->
+  </select>
+</div>
+
+
+    <ul id="transactions"></ul>
+    <div class="chart-container">
+     <canvas id="chart" ></canvas>
+    </div>
+  <button id="export-csv">📤 Export CSV</button>
+
+
+  </div>
+  <script src="scripts.js"></script>
+</body>
+</html>
