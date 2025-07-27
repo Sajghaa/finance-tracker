@@ -1,48 +1,4 @@
 
-/**
- * Handles the main logic for a personal finance tracker web app.
- * 
- * Elements:
- * - Grabs DOM elements for form, inputs, transaction list, summary displays, chart, and controls.
- * 
- * State:
- * - Loads transactions from localStorage or initializes as empty array.
- * 
- * Features:
- * - Glowing cursor effect based on mouse movement.
- * - Loader fade-out on window load.
- * - Add transaction: Handles form submission, validates input, updates state and UI.
- * - Remove transaction: Deletes transaction by ID, updates state and UI.
- * - Render transactions: Filters by selected month, displays each transaction with color and delete button.
- * - Update summary: Calculates and displays total income, expense, and balance.
- * - Chart.js integration: Displays income vs expense as a doughnut chart.
- * - Populate month filter: Generates month options from transactions for filtering.
- * - Export CSV: Downloads all transactions as a CSV file.
- * - Voice input: Uses webkitSpeechRecognition to fill description input via voice.
- * - Month filter: Updates UI when month selection changes.
- * 
- * @constant {HTMLFormElement} form - The transaction form element.
- * @constant {HTMLInputElement} descInput - Input for transaction description.
- * @constant {HTMLInputElement} amountInput - Input for transaction amount.
- * @constant {HTMLSelectElement} typeSelect - Select for transaction type (income/expense).
- * @constant {HTMLElement} transactionsList - List element for displaying transactions.
- * @constant {HTMLElement} incomeDisplay - Element to display total income.
- * @constant {HTMLElement} expenseDisplay - Element to display total expense.
- * @constant {HTMLElement} balanceDisplay - Element to display balance.
- * @constant {Array<Object>} transactions - Array of transaction objects.
- * 
- * @event mousemove - Updates CSS variables for glowing cursor effect.
- * @event load - Fades out loader on page load.
- * @event submit (form) - Adds a new transaction.
- * @function removeTransaction - Removes a transaction by ID.
- * @function renderTransactions - Renders the filtered list of transactions.
- * @function updateSummary - Updates income, expense, and balance displays.
- * @function updateChart - Updates the Chart.js doughnut chart.
- * @function populateMonthFilter - Populates the month filter dropdown.
- * @event click (export-csv) - Exports transactions as CSV.
- * @event click (voiceBtn) - Starts voice recognition for description input.
- * @event change (monthFilter) - Updates UI based on selected month.
- */
 // 💡 Elements
 const form = document.getElementById('transaction-form');
 const descInput = document.getElementById('desc');
@@ -70,7 +26,7 @@ window.addEventListener('load', () => {
   }, 1000);
 });
 
-// 🧠 Add Transaction
+//  Add Transaction
 form.addEventListener('submit', (e) => {
   e.preventDefault();
 
@@ -98,7 +54,7 @@ form.addEventListener('submit', (e) => {
   updateChart();
 });
 
-// 🗑️ Remove Transaction
+// 🗑Remove Transaction
 function removeTransaction(id) {
   transactions = transactions.filter(tx => tx.id !== id);
   localStorage.setItem('lavish_transactions', JSON.stringify(transactions));
@@ -107,7 +63,7 @@ function removeTransaction(id) {
   updateChart();
 }
 
-// 💸 Render Transactions
+// render Transactions
 function renderTransactions() {
   transactionsList.innerHTML = '';
 
@@ -132,7 +88,7 @@ function renderTransactions() {
   });
 }
 
-// 💰 Update Summary
+//  Update Summary
 function updateSummary() {
   const income = transactions
     .filter(tx => tx.type === 'income')
@@ -149,7 +105,7 @@ function updateSummary() {
   balanceDisplay.textContent = `$${balance.toFixed(2)}`;
 }
 
-// 📊 Chart.js
+//  Chart.js
 let chart;
 function updateChart() {
   const income = transactions
